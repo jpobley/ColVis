@@ -613,6 +613,11 @@ ColVis.prototype = {
 					showHide = ! showHide;
 				}
 
+				if ( e.target.nodeName.toLowerCase() === 'input' && that.s.fnStateChange !== null )
+				{
+					that.s.fnStateChange.call( that, i, showHide );
+				}
+
 				/* Need to consider the case where the initialiser created more than one table - change the
 				 * API index that DataTables is using
 				 */
@@ -636,11 +641,6 @@ ColVis.prototype = {
 				}
 
 				$.fn.dataTableExt.iApiIndex = oldIndex; /* Restore */
-
-				if ( e.target.nodeName.toLowerCase() === 'input' && that.s.fnStateChange !== null )
-				{
-					that.s.fnStateChange.call( that, i, showHide );
-				}
 			} )[0];
 	},
 
